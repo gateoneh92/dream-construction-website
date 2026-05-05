@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="드림건설 | 파주 상하수도 전문 | 30년 경력 | 파주시청 협력업체 | 하수구 막힘, 누수 수리, 배관 공사">
+<meta name="keywords" content="파주 하수구, 파주 누수, 파주 배관 공사, 드림건설, 파주 상하수도">
+<title>드림건설 — 파주 상하수도 전문</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,600&family=Noto+Sans+KR:wght@300;400;500;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+/* ─────────────────────────────────────────
+   RESET & BASE
+───────────────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: #080808;
+  color: #ede8de;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+a { text-decoration: none; color: inherit; }
+img { display: block; max-width: 100%; }
+button { font-family: inherit; }
+
+/* ─────────────────────────────────────────
+   CSS VARIABLES
+───────────────────────────────────────── */
+:root {
+  --bg: #080808;
+  --bg2: #0e0e0e;
+  --bg3: #141414;
+  --text: #ede8de;
+  --text-dim: rgba(237,232,222,0.45);
+  --text-mid: rgba(237,232,222,0.7);
+  --cyan: #00d4ff;
+  --green: #0aff8a;
+  --line: rgba(237,232,222,0.1);
+  --line-bright: rgba(237,232,222,0.2);
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --mono: 'DM Mono', monospace;
+  --sans: 'Noto Sans KR', sans-serif;
+}
+
+/* ─────────────────────────────────────────
+   NOISE OVERLAY
+───────────────────────────────────────── */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 9000; opacity: 0.4;
+}
+
+/* ─────────────────────────────────────────
+   NAV
+───────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+  height: 72px;
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(20px);
+  background: rgba(8,8,8,0.85);
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text);
+}
+.nav-logo span {
+  font-size: 10px;
+  font-family: var(--mono);
+  font-weight: 300;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+  display: block;
+  margin-top: -4px;
+}
+.nav-links {
+  display: flex; gap: 40px; align-items: center;
+}
+.nav-links a {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  transition: color 0.2s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0; right: 0;
+  height: 1px;
+  background: var(--cyan);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-links a:hover::after { transform: scaleX(1); }
+.nav-call {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--bg);
+  background: var(--cyan);
+  padding: 10px 22px;
+  border-radius: 2px;
+  font-weight: 400;
+  transition: background 0.2s, color 0.2s;
+}
+.nav-call:hover { background: var(--green); }
+@media (max-width: 768px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+}
+
+/* ─────────────────────────────────────────
+   HERO
+───────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: flex-end;
+  padding: 120px 48px 80px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+/* Animated water grid background */
+.hero-bg {
+  position: absolute; inset: 0;
+  overflow: hidden;
+}
+.hero-bg-grid {
+  position: absolute; inset: -50%;
+  background-image:
+    linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+  animation: gridMove 20s linear infinite;
+  transform-origin: center;
+}
+@keyframes gridMove {
+  0% { transform: perspective(600px) rotateX(60deg) translateY(0); }
+  100% { transform: perspective(600px) rotateX(60deg) translateY(80px); }
+}
+.hero-bg-glow {
+  position: absolute; bottom: -20%; left: 50%;
+  transform: translateX(-50%);
+  width: 800px; height: 400px;
+  background: radial-gradient(ellipse, rgba(0,212,255,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-bg-glow2 {
+  position: absolute; top: 20%; right: -10%;
+  width: 500px; height: 500px;
+  background: radial-gradient(ellipse, rgba(10,255,138,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 32px;
+  position: relative;
+}
+.hero-eyebrow-line { width: 48px; height: 1px; background: var(--cyan); }
+.hero-eyebrow span {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(72px, 12vw, 180px);
+  font-weight: 300;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  margin-bottom: 48px;
+  position: relative;
+}
+.hero-title .line { display: block; overflow: hidden; }
+.hero-title .line span {
+  display: block;
+  animation: slideUp 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.hero-title .line:nth-child(1) span { animation-delay: 0.1s; }
+.hero-title .line:nth-child(2) span { animation-delay: 0.2s; }
+.hero-title .line:nth-child(3) span { animation-delay: 0.3s; }
+@keyframes slideUp {
+  from { transform: translateY(110%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.hero-title em { font-style: italic; color: var(--text-dim); }
+.hero-title .accent { color: var(--cyan); }
+
+.hero-bottom {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: flex-end;
+  gap: 40px;
+  position: relative;
+}
+.hero-desc {
+  max-width: 400px;
+  font-size: 15px;
+  color: var(--text-mid);
+  line-height: 1.9;
+  font-weight: 300;
+}
+.hero-desc strong { color: var(--text); font-weight: 500; }
+.hero-cta-group { display: flex; flex-direction: column; gap: 12px; align-items: flex-end; }
+.btn-hero-call {
+  display: flex; align-items: center; gap: 16px;
+  background: var(--cyan);
+  color: #080808;
+  padding: 18px 36px;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 1px;
+  font-weight: 400;
+  border: none;
+  transition: background 0.2s, transform 0.2s;
+}
+.btn-hero-call:hover { background: var(--green); transform: scale(1.02); }
+.btn-hero-inquiry {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 32px;
+  border: 1px solid var(--line-bright);
+  color: var(--text-mid);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 1px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-hero-inquiry:hover { border-color: var(--cyan); color: var(--text); }
+
+.hero-phone-big {
+  font-family: var(--serif);
+  font-size: clamp(18px, 3vw, 28px);
+  font-weight: 300;
+  color: var(--text);
+  letter-spacing: 2px;
+  text-align: right;
+}
+.hero-phone-big a { color: inherit; }
+.hero-phone-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  text-align: right;
+  margin-bottom: 4px;
+}
+@media (max-width: 768px) {
+  .hero { padding: 100px 24px 60px; }
+  .hero-bottom { grid-template-columns: 1fr; }
+  .hero-cta-group { align-items: flex-start; }
+  .hero-phone-big, .hero-phone-label { text-align: left; }
+}
+
+/* ─────────────────────────────────────────
+   MARQUEE
+───────────────────────────────────────── */
+.marquee-strip {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+  background: var(--bg2);
+  padding: 16px 0;
+  position: relative;
+}
+.marquee-inner {
+  display: flex;
+  animation: marquee 30s linear infinite;
+  white-space: nowrap;
+  width: max-content;
+}
+.marquee-item {
+  display: flex; align-items: center; gap: 24px;
+  padding: 0 40px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.marquee-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--cyan); }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ─────────────────────────────────────────
+   STATS ROW
+───────────────────────────────────────── */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid var(--line);
+}
+.stat-block {
+  padding: 64px 48px;
+  border-right: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.stat-block:last-child { border-right: none; }
+.stat-block::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 48px;
+  width: 0; height: 1px;
+  background: var(--cyan);
+  transition: width 0.6s ease;
+}
+.stat-block:hover::before { width: calc(100% - 96px); }
+.stat-num {
+  font-family: var(--serif);
+  font-size: clamp(56px, 6vw, 96px);
+  font-weight: 300;
+  line-height: 1;
+  color: var(--text);
+  display: block;
+  letter-spacing: -0.02em;
+}
+.stat-unit { color: var(--cyan); }
+.stat-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-top: 12px;
+  display: block;
+}
+@media (max-width: 900px) {
+  .stats-row { grid-template-columns: 1fr 1fr; }
+  .stat-block { border-bottom: 1px solid var(--line); }
+}
+@media (max-width: 480px) {
+  .stats-row { grid-template-columns: 1fr; }
+  .stat-block { padding: 40px 24px; }
+}
+
+/* ─────────────────────────────────────────
+   SERVICES
+───────────────────────────────────────── */
+.services {
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.section-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+  padding: 80px 48px 64px;
+  border-bottom: 1px solid var(--line);
+  gap: 40px;
+}
+.section-index {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(40px, 5vw, 72px);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+.section-title em { font-style: italic; color: var(--text-dim); }
+.section-desc {
+  font-size: 15px;
+  color: var(--text-mid);
+  line-height: 2;
+  max-width: 400px;
+  align-self: end;
+}
+@media (max-width: 768px) {
+  .section-header { grid-template-columns: 1fr; padding: 60px 24px 40px; }
+}
+
+.services-list { }
+.service-item {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  align-items: center;
+  padding: 36px 48px;
+  border-bottom: 1px solid var(--line);
+  gap: 40px;
+  transition: background 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.service-item::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(0,212,255,0.04), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.service-item:hover::before { transform: translateX(0); }
+.service-item:last-child { border-bottom: none; }
+.service-num {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+}
+.service-info h3 {
+  font-family: var(--serif);
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 400;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+.service-info p {
+  font-size: 13px;
+  color: var(--text-dim);
+  font-weight: 300;
+  line-height: 1.7;
+}
+.service-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  border: 1px solid var(--line-bright);
+  padding: 8px 16px;
+  transition: border-color 0.3s, color 0.3s;
+  white-space: nowrap;
+}
+.service-item:hover .service-tag { border-color: var(--cyan); color: var(--cyan); }
+@media (max-width: 768px) {
+  .service-item { grid-template-columns: 1fr; padding: 32px 24px; gap: 12px; }
+  .service-num { display: none; }
+  .service-tag { display: none; }
+}
+
+/* ─────────────────────────────────────────
+   ABOUT / TRUST
+───────────────────────────────────────── */
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--line);
+}
+.about-left {
+  padding: 80px 48px;
+  border-right: 1px solid var(--line);
+}
+.about-right {
+  padding: 80px 48px;
+  background: var(--bg2);
+}
+.about-text {
+  font-family: var(--serif);
+  font-size: clamp(20px, 2.5vw, 30px);
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--text);
+  margin-bottom: 40px;
+}
+.about-text em { font-style: italic; color: var(--cyan); }
+.about-body {
+  font-size: 14px;
+  color: var(--text-mid);
+  line-height: 2;
+  margin-bottom: 32px;
+  font-weight: 300;
+}
+.trust-list { list-style: none; }
+.trust-list li {
+  display: flex; align-items: flex-start; gap: 20px;
+  padding: 20px 0;
+  border-top: 1px solid var(--line);
+}
+.trust-list li:last-child { border-bottom: 1px solid var(--line); }
+.trust-arrow {
+  font-family: var(--mono);
+  font-size: 16px;
+  color: var(--cyan);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+.trust-list-title {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.trust-list-desc {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.7;
+  font-weight: 300;
+}
+.badge-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+  margin-top: 40px;
+}
+.badge-cell {
+  background: var(--bg2);
+  padding: 36px 32px;
+  position: relative;
+}
+.badge-cell-num {
+  font-family: var(--serif);
+  font-size: 52px;
+  font-weight: 300;
+  color: var(--text);
+  line-height: 1;
+  display: block;
+}
+.badge-cell-unit { color: var(--cyan); font-size: 36px; }
+.badge-cell-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-top: 10px;
+  display: block;
+}
+@media (max-width: 768px) {
+  .about { grid-template-columns: 1fr; }
+  .about-left { padding: 60px 24px; border-right: none; border-bottom: 1px solid var(--line); }
+  .about-right { padding: 60px 24px; }
+  .badge-grid { grid-template-columns: 1fr; }
+  .badge-cell { padding: 32px 24px; }
+  .badge-cell-num { font-size: 42px; }
+  .badge-cell-unit { font-size: 28px; }
+}
+
+/* ─────────────────────────────────────────
+   PORTFOLIO
+───────────────────────────────────────── */
+.portfolio {
+  background: var(--bg3);
+  border-bottom: 1px solid var(--line);
+}
+.portfolio-header {
+  background: var(--bg3);
+}
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border-top: 1px solid var(--line);
+}
+.portfolio-card {
+  background: var(--bg3);
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+}
+.portfolio-card:nth-child(1) { grid-column: span 2; }
+.portfolio-card-bg {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 80px;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.portfolio-card:hover .portfolio-card-bg { transform: scale(1.08); }
+.pc-bg-1 { background: linear-gradient(135deg, #0a1628, #0d3050); }
+.pc-bg-2 { background: linear-gradient(135deg, #0a1f1a, #0d3028); }
+.pc-bg-3 { background: linear-gradient(135deg, #1a1005, #2a1f08); }
+.pc-bg-4 { background: linear-gradient(135deg, #1a0a0a, #300d0d); }
+.pc-bg-5 { background: linear-gradient(135deg, #0a0a1a, #0d0d30); }
+.pc-bg-6 { background: linear-gradient(135deg, #0d1a0a, #1a3010); }
+.portfolio-card-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(8,8,8,0.95) 0%, rgba(8,8,8,0.2) 50%, transparent 100%);
+  display: flex; flex-direction: column;
+  justify-content: flex-end;
+  padding: 32px;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.4s;
+}
+.portfolio-card:hover .portfolio-card-overlay { transform: translateY(0); opacity: 1; }
+
+/* Always visible label at top */
+.portfolio-card-label {
+  position: absolute; top: 20px; left: 20px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  z-index: 2;
+}
+.portfolio-card-title {
+  font-family: var(--serif);
+  font-size: clamp(18px, 2.5vw, 26px);
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+.portfolio-card-desc {
+  font-size: 12px;
+  color: var(--text-mid);
+  line-height: 1.7;
+}
+.portfolio-tags {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  margin-top: 12px;
+}
+.ptag {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border: 1px solid rgba(0,212,255,0.3);
+  color: var(--cyan);
+}
+@media (max-width: 768px) {
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .portfolio-card:nth-child(1) { grid-column: span 1; }
+  .portfolio-card-overlay { transform: translateY(0); opacity: 1; }
+  .portfolio .section-header { grid-template-columns: 1fr; padding: 60px 24px 40px; }
+}
+
+/* ─────────────────────────────────────────
+   AREA
+───────────────────────────────────────── */
+.area {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  border-bottom: 1px solid var(--line);
+}
+.area-left {
+  padding: 80px 48px;
+  border-right: 1px solid var(--line);
+  display: flex; flex-direction: column;
+  justify-content: space-between;
+}
+.area-right { padding: 80px 48px; }
+.area-title {
+  font-family: var(--serif);
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: 32px;
+}
+.area-desc {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 2;
+}
+.area-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.area-cell {
+  background: var(--bg);
+  padding: 28px 24px;
+  transition: background 0.3s;
+}
+.area-cell:hover { background: var(--bg3); }
+.area-cell-name {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.area-cell-type {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+.area-cell.main-area .area-cell-name { color: var(--cyan); }
+@media (max-width: 900px) {
+  .area { grid-template-columns: 1fr; }
+  .area-left { padding: 60px 24px; border-right: none; border-bottom: 1px solid var(--line); }
+  .area-right { padding: 60px 24px; }
+  .area-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .area-grid { grid-template-columns: 1fr; }
+}
+
+/* ─────────────────────────────────────────
+   EMERGENCY BANNER
+───────────────────────────────────────── */
+.emergency {
+  background: linear-gradient(90deg, #8b0000, #c0392b);
+  padding: 24px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--line);
+}
+.emergency-text {
+  font-family: var(--serif);
+  font-size: clamp(18px, 3vw, 28px);
+  font-weight: 300;
+  color: white;
+  letter-spacing: 0.01em;
+}
+.emergency-text em { font-style: italic; opacity: 0.7; }
+.emergency-btn {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #8b0000;
+  background: white;
+  padding: 14px 28px;
+  border: none;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+.emergency-btn:hover { background: #ffe; }
+@media (max-width: 768px) {
+  .emergency { padding: 24px; }
+}
+
+/* ─────────────────────────────────────────
+   CONTACT
+───────────────────────────────────────── */
+.contact { border-bottom: 1px solid var(--line); }
+.contact-header {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 40px;
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.contact-left {
+  padding: 80px 48px;
+  border-right: 1px solid var(--line);
+}
+.contact-right {
+  padding: 80px 48px;
+  background: var(--bg2);
+}
+.contact-title {
+  font-family: var(--serif);
+  font-size: clamp(36px, 4vw, 60px);
+  font-weight: 300;
+  color: var(--text);
+  line-height: 1.1;
+  margin-bottom: 48px;
+  letter-spacing: -0.02em;
+}
+.contact-title em { font-style: italic; color: var(--cyan); }
+
+.contact-phone-link {
+  font-family: var(--serif);
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 300;
+  color: var(--text);
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 12px;
+  position: relative;
+  transition: color 0.2s;
+}
+.contact-phone-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0; right: 0;
+  height: 1px;
+  background: var(--cyan);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+.contact-phone-link:hover { color: var(--cyan); }
+.contact-phone-link:hover::after { transform: scaleX(1); }
+
+.contact-channels {
+  display: flex; gap: 12px; margin-top: 40px; flex-wrap: wrap;
+}
+.channel-btn {
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 24px;
+  border: 1px solid var(--line-bright);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-mid);
+  transition: all 0.25s;
+}
+.channel-btn:hover { border-color: var(--cyan); color: var(--cyan); }
+.ch-kakao:hover { border-color: #fee500; color: #fee500; }
+
+.contact-hours {
+  margin-top: 48px;
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+}
+.hours-title {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 20px;
+}
+.hours-row {
+  display: flex; justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+  color: var(--text-mid);
+}
+.hours-row:last-child { border-bottom: none; }
+.hours-row span:last-child { color: var(--text); font-weight: 400; }
+.hours-row.accent span:last-child { color: var(--cyan); }
+
+/* ─── FORM ─── */
+.form-title {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.form-sub {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-bottom: 36px;
+  font-weight: 300;
+}
+.form-group { margin-bottom: 20px; }
+.form-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+}
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--line-bright);
+  border-radius: 0;
+  padding: 14px 16px;
+  font-size: 14px;
+  font-family: var(--sans);
+  font-weight: 300;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s;
+  -webkit-appearance: none;
+}
+.form-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23ede8de' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+.form-textarea { resize: vertical; min-height: 120px; }
+.form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--cyan); }
+.form-submit {
+  width: 100%;
+  background: var(--cyan);
+  color: #080808;
+  border: none;
+  padding: 18px 32px;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 400;
+  transition: background 0.2s;
+  margin-top: 8px;
+}
+.form-submit:hover { background: var(--green); }
+.form-success {
+  display: none;
+  padding: 24px;
+  border: 1px solid var(--cyan);
+  color: var(--cyan);
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 1px;
+  margin-top: 20px;
+  text-align: center;
+}
+@media (max-width: 768px) {
+  .contact-grid { grid-template-columns: 1fr; }
+  .contact-left { padding: 60px 24px; border-right: none; border-bottom: 1px solid var(--line); }
+  .contact-right { padding: 60px 24px; }
+  .contact .section-header { grid-template-columns: 1fr; padding: 60px 24px 40px; }
+}
+
+/* ─────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────── */
+footer {
+  background: var(--bg2);
+  padding: 64px 48px 40px;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 32px;
+}
+.footer-brand-name {
+  font-family: var(--serif);
+  font-size: 36px;
+  font-weight: 300;
+  color: var(--text);
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+.footer-brand-desc {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 2;
+  max-width: 360px;
+  font-weight: 300;
+}
+.footer-col-title {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 24px;
+}
+.footer-col-list { list-style: none; }
+.footer-col-list li {
+  padding: 8px 0;
+  font-size: 13px;
+  color: var(--text-mid);
+  border-bottom: 1px solid var(--line);
+  font-weight: 300;
+}
+.footer-col-list li:last-child { border-bottom: none; }
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-copy {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+}
+.footer-phone-sm {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--cyan);
+  letter-spacing: 1px;
+}
+@media (max-width: 768px) {
+  footer { padding: 48px 24px 32px; }
+  .footer-top { grid-template-columns: 1fr; }
+}
+
+/* ─────────────────────────────────────────
+   FLOATING BUTTON
+───────────────────────────────────────── */
+.float-group {
+  position: fixed;
+  bottom: 32px; right: 32px;
+  display: flex; flex-direction: column;
+  gap: 12px; align-items: center;
+  z-index: 9000;
+}
+.float-call {
+  width: 56px; height: 56px;
+  background: var(--cyan);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  transition: background 0.2s, transform 0.2s;
+}
+.float-call:hover { background: var(--green); transform: scale(1.1); }
+.float-kakao-btn {
+  width: 56px; height: 56px;
+  background: #fee500;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  transition: transform 0.2s;
+}
+.float-kakao-btn:hover { transform: scale(1.1); }
+
+/* ─────────────────────────────────────────
+   SCROLL ANIMATION CLASSES
+───────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-logo">
+    드림건설
+    <span>DREAM CONSTRUCTION · 파주 상하수도</span>
+  </div>
+  <div class="nav-links">
+    <a href="#services">서비스</a>
+    <a href="#about">소개</a>
+    <a href="#portfolio">시공사례</a>
+    <a href="#area">지역</a>
+    <a href="#contact" class="nav-call">문의하기 →</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-bg-glow"></div>
+    <div class="hero-bg-glow2"></div>
+  </div>
+
+  <div class="hero-eyebrow">
+    <div class="hero-eyebrow-line"></div>
+    <span>파주시청 협력업체 · Est. 1994</span>
+  </div>
+
+  <h1 class="hero-title">
+    <span class="line"><span>드림건설</span></span>
+    <span class="line"><span><em>파주 상하수도</em></span></span>
+    <span class="line"><span><span class="accent">전문</span></span></span>
+  </h1>
+
+  <div class="hero-bottom">
+    <div class="hero-desc">
+      <strong>30년 이상의 현장 경험</strong>과 파주시청 협력 이력을 바탕으로,
+      하수구 막힘부터 대형 배관 공사까지 파주 전 지역을 책임집니다.
+      정직한 견적, 신속한 서비스, 믿을 수 있는 시공.
+    </div>
+    <div class="hero-cta-group">
+      <div>
+        <div class="hero-phone-label">대표 전화</div>
+        <div class="hero-phone-big"><a href="tel:031-000-0000">031-000-0000</a></div>
+      </div>
+      <a href="tel:031-000-0000" class="btn-hero-call">
+        <span>📞</span> 지금 전화하기
+      </a>
+      <a href="#contact" class="btn-hero-inquiry">
+        온라인 문의 →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── MARQUEE ── -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <!-- repeated twice for seamless loop -->
+    <div class="marquee-item"><span class="marquee-dot"></span>하수구 막힘</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>누수 탐지 및 수리</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>배관 설치 · 교체</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>상하수도 공사</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>파주시청 협력업체</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>30년 경력</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>파주 전 지역 서비스</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>하수구 막힘</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>누수 탐지 및 수리</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>배관 설치 · 교체</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>상하수도 공사</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>파주시청 협력업체</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>30년 경력</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>파주 전 지역 서비스</div>
+  </div>
+</div>
+
+<!-- ── STATS ROW ── -->
+<div class="stats-row">
+  <div class="stat-block reveal">
+    <span class="stat-num">30<span class="stat-unit">+</span></span>
+    <span class="stat-label">년 시공 경력</span>
+  </div>
+  <div class="stat-block reveal reveal-delay-1">
+    <span class="stat-num">1000<span class="stat-unit">+</span></span>
+    <span class="stat-label">완료 프로젝트</span>
+  </div>
+  <div class="stat-block reveal reveal-delay-2">
+    <span class="stat-num" style="font-size:clamp(28px,3vw,44px); letter-spacing:0;">파주시청</span>
+    <span class="stat-label">공식 협력업체</span>
+  </div>
+</div>
+
+<!-- ── SERVICES ── -->
+<section class="services" id="services">
+  <div class="section-header">
+    <div>
+      <div class="section-index reveal">/ 01 — 서비스</div>
+      <h2 class="section-title reveal reveal-delay-1">무엇이든<br><em>해결</em>합니다</h2>
+    </div>
+    <p class="section-desc reveal reveal-delay-2">
+      30년의 경험으로 쌓인 기술력으로 파주 지역 모든 상하수도 문제를 빠르고 정확하게 처리합니다. 단순 수리부터 대형 공사까지 책임집니다.
+    </p>
+  </div>
+
+  <div class="services-list">
+    <div class="service-item reveal">
+      <div class="service-num">01</div>
+      <div class="service-info">
+        <h3>하수구 막힘 해결</h3>
+        <p>주방·화장실·욕실 하수구 막힘을 고압 세척 장비로 즉시 처리. 악취 원인까지 근본 해결.</p>
+      </div>
+      <div class="service-tag">당일 처리</div>
+    </div>
+    <div class="service-item reveal">
+      <div class="service-num">02</div>
+      <div class="service-info">
+        <h3>누수 탐지 및 수리</h3>
+        <p>벽체·바닥·천장 누수를 정밀 장비로 탐지. 최소 침습으로 신속하게 보수.</p>
+      </div>
+      <div class="service-tag">정밀 탐지</div>
+    </div>
+    <div class="service-item reveal">
+      <div class="service-num">03</div>
+      <div class="service-info">
+        <h3>배관 설치 및 교체</h3>
+        <p>노후 배관 전면 교체부터 신규 설치까지. 수도관·오수관·우수관 모두 시공 가능.</p>
+      </div>
+      <div class="service-tag">품질 보장</div>
+    </div>
+    <div class="service-item reveal">
+      <div class="service-num">04</div>
+      <div class="service-info">
+        <h3>상하수도 공사</h3>
+        <p>파주시청 발주 공사 다수 수행. 도로 굴착 및 대형 상하수도 공사 전문.</p>
+      </div>
+      <div class="service-tag">관공서 기준</div>
+    </div>
+    <div class="service-item reveal">
+      <div class="service-num">05</div>
+      <div class="service-info">
+        <h3>배수 및 우수관 공사</h3>
+        <p>집중 호우 침수 방지 배수로 정비. 우수관 신설 및 보수, 장마철 예방 점검.</p>
+      </div>
+      <div class="service-tag">침수 방지</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT / TRUST ── -->
+<section class="about" id="about">
+  <div class="about-left">
+    <div>
+      <div class="section-index reveal">/ 02 — 업체 소개</div>
+      <p class="about-text reveal reveal-delay-1">
+        파주를 가장 잘 아는<br>
+        <em>상하수도 전문가</em>
+      </p>
+      <p class="about-body reveal reveal-delay-2">
+        드림건설은 1994년 창업 이래 30년 이상 파주 지역에서 상하수도 및 배관 공사를 전문으로 해온 업체입니다. 파주시청과의 공식 협력을 통해 공공 기반시설 공사에 다수 참여하였으며, 정직한 견적과 꼼꼼한 시공으로 지역 내 신뢰를 쌓아 왔습니다.
+      </p>
+    </div>
+    <ul class="trust-list">
+      <li class="reveal">
+        <span class="trust-arrow">→</span>
+        <div>
+          <div class="trust-list-title">파주시청 공식 협력업체</div>
+          <div class="trust-list-desc">관공서 기준에 맞는 엄격한 시공 품질과 안전 관리를 약속합니다.</div>
+        </div>
+      </li>
+      <li class="reveal reveal-delay-1">
+        <span class="trust-arrow">→</span>
+        <div>
+          <div class="trust-list-title">30년 이상의 현장 경험</div>
+          <div class="trust-list-desc">단순 수리부터 대형 공사까지 어떤 상황도 능숙하게 처리합니다.</div>
+        </div>
+      </li>
+      <li class="reveal reveal-delay-2">
+        <span class="trust-arrow">→</span>
+        <div>
+          <div class="trust-list-title">정직한 견적, 추가 비용 없음</div>
+          <div class="trust-list-desc">방문 후 정확한 진단을 바탕으로 합리적인 견적을 제시합니다.</div>
+        </div>
+      </li>
+      <li class="reveal reveal-delay-3">
+        <span class="trust-arrow">→</span>
+        <div>
+          <div class="trust-list-title">AS 보장 및 사후 관리</div>
+          <div class="trust-list-desc">시공 후 문제 발생 시 신속한 사후 서비스를 보장합니다.</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="about-right">
+    <div class="section-index reveal">실적</div>
+    <div class="badge-grid reveal reveal-delay-1">
+      <div class="badge-cell">
+        <span class="badge-cell-num"><span class="counter" data-target="30">0</span><span class="badge-cell-unit">+</span></span>
+        <span class="badge-cell-label">년 시공 경력</span>
+      </div>
+      <div class="badge-cell">
+        <span class="badge-cell-num"><span class="counter" data-target="1000">0</span><span class="badge-cell-unit">+</span></span>
+        <span class="badge-cell-label">완료 현장</span>
+      </div>
+      <div class="badge-cell">
+        <span class="badge-cell-num" style="font-size:32px; letter-spacing:0;">파주시청</span>
+        <span class="badge-cell-label">공식 협력</span>
+      </div>
+    </div>
+
+    <div style="margin-top:40px; padding-top:40px; border-top:1px solid var(--line);" class="reveal">
+      <div class="section-index" style="margin-bottom:16px;">사업자 정보</div>
+      <div style="font-size:13px; color:var(--text-dim); line-height:2.2; font-weight:300;">
+        상호명: 드림건설<br>
+        대표자: (대표자명 기입)<br>
+        사업자번호: 000-00-00000<br>
+        소재지: 경기도 파주시 (주소 기입)<br>
+        업종: 상하수도 배관 공사업
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PORTFOLIO ── -->
+<section class="portfolio" id="portfolio">
+  <div class="section-header portfolio-header">
+    <div>
+      <div class="section-index reveal">/ 03 — 시공사례</div>
+      <h2 class="section-title reveal reveal-delay-1">직접 완료한<br><em>주요 공사</em></h2>
+    </div>
+    <p class="section-desc reveal reveal-delay-2">
+      파주 지역 곳곳에서 완료한 대표적인 시공 사례들입니다. 소규모 수리부터 대형 공공 공사까지 다양하게 수행하였습니다.
+    </p>
+  </div>
+
+  <div class="portfolio-grid">
+    <div class="portfolio-card pc-bg-1">
+      <div class="portfolio-card-bg">🏗️</div>
+      <div class="portfolio-card-label">파주시청 협력</div>
+      <div class="portfolio-card-overlay">
+        <div class="portfolio-card-title">파주시청 발주 상수도 관로 교체 공사</div>
+        <div class="portfolio-card-desc">파주시청 협력업체로 선정, 노후 상수도 관로 대형 교체 공사 성공적 완료.</div>
+        <div class="portfolio-tags">
+          <span class="ptag">파주시청</span>
+          <span class="ptag">대형공사</span>
+          <span class="ptag">관로교체</span>
+        </div>
+      </div>
+    </div>
+    <div class="portfolio-card pc-bg-2">
+      <div class="portfolio-card-bg">💧</div>
+      <div class="portfolio-card-label">누수 수리</div>
+      <div class="portfolio-card-overlay">
+        <div class="portfolio-card-title">금촌동 단독주택 바닥 누수 탐지 및 보수</div>
+        <div class="portfolio-card-desc">정밀 탐지 장비로 위치 확정 후 최소 범위 철거, 신속 보수 완료.</div>
+        <div class="portfolio-tags">
+          <span class="ptag">금촌동</span>
+          <span class="ptag">누수수리</span>
+        </div>
+      </div>
+    </div>
+    <div class="portfolio-card pc-bg-3">
+      <div class="portfolio-card-bg">🚿</div>
+      <div class="portfolio-card-label">하수구 해결</div>
+      <div class="portfolio-card-overlay">
+        <div class="portfolio-card-title">운정신도시 아파트 하수구 역류 해결</div>
+        <div class="portfolio-card-desc">고압 세척 및 배관 교체로 반복되던 역류 현상 완벽 해결.</div>
+        <div class="portfolio-tags">
+          <span class="ptag">운정신도시</span>
+          <span class="ptag">당일완료</span>
+        </div>
+      </div>
+    </div>
+    <div class="portfolio-card pc-bg-4">
+      <div class="portfolio-card-bg">🌧️</div>
+      <div class="portfolio-card-label">배수 공사</div>
+      <div class="portfolio-card-overlay">
+        <div class="portfolio-card-title">교하지구 상가 침수 방지 배수로 공사</div>
+        <div class="portfolio-card-desc">장마철 반복 침수 방지를 위한 배수로 신설 및 우수관 공사.</div>
+        <div class="portfolio-tags">
+          <span class="ptag">교하지구</span>
+          <span class="ptag">침수방지</span>
+        </div>
+      </div>
+    </div>
+    <div class="portfolio-card pc-bg-5">
+      <div class="portfolio-card-bg">🔩</div>
+      <div class="portfolio-card-label">배관 교체</div>
+      <div class="portfolio-card-overlay">
+        <div class="portfolio-card-title">탄현면 노후 주택 배관 전면 교체</div>
+        <div class="portfolio-card-desc">40년 이상 된 녹슨 배관 전면 교체, 최신 자재로 생활 환경 개선.</div>
+        <div class="portfolio-tags">
+          <span class="ptag">탄현면</span>
+          <span class="ptag">전면교체</span>
+        </div>
+      </div>
+    </div>
+    <div class="portfolio-card pc-bg-6">
+      <div class="portfolio-card-bg">🏢</div>
+      <div class="portfolio-card-label">신설 공사</div>
+      <div class="portfolio-card-overlay">
+        <div class="portfolio-card-title">문산읍 대형 상업시설 하수도 신설</div>
+        <div class="portfolio-card-desc">신축 상업시설 하수도 배관 설계부터 설치까지 전 공정 완료.</div>
+        <div class="portfolio-tags">
+          <span class="ptag">문산읍</span>
+          <span class="ptag">신설</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── AREA ── -->
+<section class="area" id="area">
+  <div class="area-left">
+    <div>
+      <div class="section-index reveal">/ 04 — 서비스 지역</div>
+      <h2 class="area-title reveal reveal-delay-1">파주 전 지역<br><em style="color:var(--cyan);">어디든</em><br>출동합니다</h2>
+    </div>
+    <p class="area-desc reveal reveal-delay-2">
+      파주시 전 지역을 기본으로, 인근 고양시·김포시 일부 지역까지 출동 가능합니다. 정확한 출동 가능 여부는 전화로 문의해 주세요.
+    </p>
+  </div>
+  <div class="area-right">
+    <div class="area-grid reveal">
+      <div class="area-cell main-area">
+        <div class="area-cell-name">운정신도시</div>
+        <div class="area-cell-type">주요 지역</div>
+      </div>
+      <div class="area-cell main-area">
+        <div class="area-cell-name">금촌동</div>
+        <div class="area-cell-type">주요 지역</div>
+      </div>
+      <div class="area-cell main-area">
+        <div class="area-cell-name">교하지구</div>
+        <div class="area-cell-type">주요 지역</div>
+      </div>
+      <div class="area-cell main-area">
+        <div class="area-cell-name">문산읍</div>
+        <div class="area-cell-type">주요 지역</div>
+      </div>
+      <div class="area-cell">
+        <div class="area-cell-name">탄현면</div>
+        <div class="area-cell-type">서비스 지역</div>
+      </div>
+      <div class="area-cell">
+        <div class="area-cell-name">조리읍</div>
+        <div class="area-cell-type">서비스 지역</div>
+      </div>
+      <div class="area-cell">
+        <div class="area-cell-name">법원읍</div>
+        <div class="area-cell-type">서비스 지역</div>
+      </div>
+      <div class="area-cell">
+        <div class="area-cell-name">파평면</div>
+        <div class="area-cell-type">서비스 지역</div>
+      </div>
+      <div class="area-cell">
+        <div class="area-cell-name">광탄면</div>
+        <div class="area-cell-type">서비스 지역</div>
+      </div>
+    </div>
+    <p style="font-size:12px; color:var(--text-dim); margin-top:20px; font-family:var(--mono); letter-spacing:1px;">
+      + 인근 고양시, 김포시 일부 지역 가능
+    </p>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section class="contact" id="contact">
+  <div class="section-header contact-header">
+    <div>
+      <div class="section-index reveal">/ 05 — 연락하기</div>
+      <h2 class="section-title reveal reveal-delay-1">지금 바로<br><em>연락주세요</em></h2>
+    </div>
+    <p class="section-desc reveal reveal-delay-2">
+      전화 한 통으로 빠르게 해결해 드립니다. 견적이나 일반 문의는 아래 양식을 이용해 주세요.
+    </p>
+  </div>
+
+  <div class="contact-grid">
+    <div class="contact-left">
+      <div class="section-index reveal" style="margin-bottom:8px;">대표 전화</div>
+      <a href="tel:031-000-0000" class="contact-phone-link reveal reveal-delay-1">031-000-0000</a>
+      <p style="font-size:13px; color:var(--text-dim); font-family:var(--mono); letter-spacing:1px;" class="reveal reveal-delay-2">상담 및 견적 문의</p>
+
+      <div class="contact-channels reveal reveal-delay-3">
+        <a href="tel:031-000-0000" class="channel-btn ch-phone">
+          <span>📞</span> 전화 문의
+        </a>
+        <a href="https://open.kakao.com/" class="channel-btn ch-kakao">
+          <span>💛</span> 카카오톡
+        </a>
+      </div>
+
+      <div class="contact-hours reveal" style="--delay:0.4s">
+        <div class="hours-title">운영 시간</div>
+        <div class="hours-row">
+          <span>평일</span>
+          <span>08:00 — 20:00</span>
+        </div>
+        <div class="hours-row">
+          <span>주말 · 공휴일</span>
+          <span>09:00 — 18:00</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-right">
+      <div class="form-title reveal">온라인 문의</div>
+      <p class="form-sub reveal reveal-delay-1">아래 양식을 작성해 주시면 빠르게 연락드리겠습니다.</p>
+      <form id="contactForm" onsubmit="handleSubmit(event)">
+        <div class="form-group reveal reveal-delay-1">
+          <label class="form-label">성함 *</label>
+          <input class="form-input" type="text" placeholder="성함을 입력해 주세요" required>
+        </div>
+        <div class="form-group reveal reveal-delay-2">
+          <label class="form-label">연락처 *</label>
+          <input class="form-input" type="tel" placeholder="010-0000-0000" required>
+        </div>
+        <div class="form-group reveal reveal-delay-2">
+          <label class="form-label">문의 유형</label>
+          <select class="form-select form-input">
+            <option value="">선택해 주세요</option>
+            <option>하수구 막힘</option>
+            <option>누수 탐지 및 수리</option>
+            <option>배관 설치 / 교체</option>
+            <option>상하수도 공사</option>
+            <option>견적 문의</option>
+            <option>기타</option>
+          </select>
+        </div>
+        <div class="form-group reveal reveal-delay-3">
+          <label class="form-label">문의 내용</label>
+          <textarea class="form-textarea" placeholder="문제 상황을 간단히 설명해 주세요."></textarea>
+        </div>
+        <button type="submit" class="form-submit reveal reveal-delay-3">문의 보내기 →</button>
+      </form>
+      <div class="form-success" id="formSuccess">
+        ✓ &nbsp; 문의가 접수되었습니다. 빠른 시간 안에 연락드리겠습니다.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-brand-name">드림건설</div>
+      <p class="footer-brand-desc">
+        1994년 창업 이래 30년 이상 파주 지역 상하수도 및 배관 공사 전문. 파주시청 공식 협력업체로 공공 기반시설부터 가정 수리까지 책임집니다.
+      </p>
+      <a href="tel:031-000-0000" class="footer-phone-sm" style="display:block; margin-top:24px;">031-000-0000</a>
+    </div>
+    <div>
+      <div class="footer-col-title">주요 서비스</div>
+      <ul class="footer-col-list">
+        <li>하수구 막힘 해결</li>
+        <li>누수 탐지 및 수리</li>
+        <li>배관 설치 및 교체</li>
+        <li>상하수도 공사</li>
+        <li>배수 · 우수관 공사</li>
+        <li>24시간 긴급 출동</li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">서비스 지역</div>
+      <ul class="footer-col-list">
+        <li>운정신도시</li>
+        <li>금촌동 / 교하지구</li>
+        <li>문산읍 / 탄현면</li>
+        <li>조리읍 / 법원읍</li>
+        <li>파주시 전 지역</li>
+        <li>인근 고양 · 김포</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2024 드림건설 — 사업자등록번호 000-00-00000 — 경기도 파주시</span>
+    <span class="footer-copy">파주 하수구 · 파주 누수 · 파주 배관 공사 전문</span>
+  </div>
+</footer>
+
+<!-- Floating Buttons -->
+<div class="float-group">
+  <a href="https://open.kakao.com/" class="float-kakao-btn" title="카카오톡">💛</a>
+  <a href="tel:031-000-0000" class="float-call" title="전화하기">📞</a>
+</div>
+
+<script>
+/* ── SCROLL REVEAL ── */
+const reveals = document.querySelectorAll('.reveal');
+if ('ontouchstart' in window) {
+  // 모바일에서는 애니메이션 비활성화
+  reveals.forEach(el => el.classList.add('visible'));
+} else {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+}
+
+/* ── COUNTER ── */
+function animateCounter(el) {
+  const target = parseInt(el.dataset.target);
+  const duration = 1800;
+  const start = performance.now();
+  const update = (time) => {
+    const elapsed = time - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(ease * target).toLocaleString();
+    if (progress < 1) requestAnimationFrame(update);
+  };
+  requestAnimationFrame(update);
+}
+
+const counterObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      animateCounter(e.target);
+      counterObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+/* ── SMOOTH SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+/* ── FORM ── */
+function handleSubmit(e) {
+  e.preventDefault();
+  document.getElementById('contactForm').style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+}
+</script>
+</body>
+</html>
